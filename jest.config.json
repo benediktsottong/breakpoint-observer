@@ -1,0 +1,36 @@
+{
+    "setupFiles": ["raf/polyfill","./lib/jest-setup.js"],
+    "testPathIgnorePatterns" : [
+        "<rootDir>/node_modules/",
+        "<rootDir>/lib/",
+        "<rootDir>/src/client/public"
+    ],
+    "roots": [
+        "<rootDir>/src/client/"
+    ],
+    "testMatch": [
+        "**/*-test.js"
+    ],
+    "resetMocks": true,
+    "resetModules": true,
+    "verbose": true,
+    "cache": false,
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+        "**/*.{js,jsx}"
+    ],
+    "coverageDirectory": "bin/coverage",
+    "coverageThreshold": {
+        "global": {
+            "branches": 100,
+            "functions": 100,
+            "lines": 100,
+            "statements": 100
+        }
+    },
+    "coveragePathIgnorePatterns": [
+        "index.jsx",
+        "lib/",
+        "public/*"
+    ]
+}

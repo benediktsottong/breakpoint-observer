@@ -1,0 +1,33 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-standard",
+    "tslint-config-prettier",
+    "tslint-plugin-prettier"
+  ],
+  "rules": {
+    "prettier": true,
+    "no-console": false,
+    "no-empty": false,
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "member-ordering": false,
+    "jsx-boolean-value": false,
+    "no-extra-boolean-cast": false
+  },
+  "linterOptions": {
+    "exclude": [
+      "coverage/**",
+      "node_modules/**",
+      "api-docs",
+      "coverage/",
+      "coverage-functional/",
+      "spinnaker/**",
+      "readme/",
+      ".idea",
+      "*.config.js",
+      "**/*.json"
+    ]
+  }
+}
