@@ -11,7 +11,7 @@
  require,
  toBe
  */
-import {BreakpointMapper} from '../BreakpointMapper';
+import {BreakpointMapper} from '../src/BreakpointMapper';
 
 jest.mock(
     '../../config/BreakPoints',

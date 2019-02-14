@@ -11,7 +11,7 @@
  require
  */
 import React from 'react';
-import {WindowAdapter} from '../lib/WindowAdapter';
+import {WindowAdapter} from '../src/lib/WindowAdapter';
 
 describe('Test Window Adapter', () => {
     let windowFunctionStub,

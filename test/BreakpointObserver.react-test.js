@@ -25,7 +25,7 @@ jest.mock(
     })
 );
 
-import { BreakpointObserver } from '../BreakpointObserver';
+import { BreakpointObserver } from '../src/BreakpointObserver';
 
 describe('Test Breakpoints Observer', () => {
     let eventHandlerSpy,

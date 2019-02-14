@@ -14,7 +14,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { BreakPoints } from '../../lib/config/BreakPoints';
+import { BreakPoints } from '../../src/lib/config/BreakPoints';
 
 describe('Test BreakPoints', () => {
     describe('when the config object is called', () => {

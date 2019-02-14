@@ -2,10 +2,6 @@
 .git
 .npmrc
 .prettierrc
-.travis.yml
-Makefile
-config.gypi
-CVS
 npm-debug.log
 /src
-test
+/test

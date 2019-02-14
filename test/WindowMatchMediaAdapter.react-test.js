@@ -37,7 +37,7 @@ jest.mock(
     })
 );
 
-import { WindowMatchMediaAdapter } from '../lib/WindowMatchMediaAdapter';
+import { WindowMatchMediaAdapter } from '../src/lib/WindowMatchMediaAdapter';
 
 describe('Test Window Match Media Adapter', () => {
     let windowBackup;
