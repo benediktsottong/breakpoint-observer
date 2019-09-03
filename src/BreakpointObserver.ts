@@ -3,67 +3,42 @@ import { WindowAdapter } from './lib/WindowAdapter';
 
 interface IBreakpointEntry {
   width: number;
-  callbackHandler: (b, h) => {};
+  callbackHandler: (breakpoint, direction) => void;
 }
 
 interface IBreakpointListenersEntry {
   [key: string]: IBreakpointEntry;
 }
 
-/**
- * @returns {{subscribe}}
- */
 export const BreakpointObserver = (() => {
   let lastWindowInnerWidth: number = WindowAdapter.innerWidth();
   const breakpointListeners: IBreakpointListenersEntry = {};
 
-  /**
-   * @param {String} breakpoint
-   * @param {Function} callbackHandler
-   */
   const subscribeListenerByBreakPointName = (
     breakpoint: string,
-    callbackHandler: () => {},
+    callbackHandler: (breakpoint, direction) => void,
   ) => {
-    /**
-     * if given breakpoint known
-     */
     if (!BreakpointMapper.hasItem(breakpoint)) {
       throw new Error(`Breakpoint ${breakpoint} is undefined`);
     }
 
-    /**
-     * add given breakpoint and bind handler
-     */
     breakpointListeners[breakpoint] = {
       callbackHandler,
       width: BreakpointMapper.getBreakpointWidth(breakpoint),
     };
   };
 
-  /**
-   * @param {String} breakpoints
-   * @param {Function} callbackHandler
-   */
   const subscribeListenerByBreakPointArray = (
     breakpoints: string[],
-    callbackHandler: () => {},
+    callbackHandler: (breakpoint, direction) => void,
   ) => {
     breakpoints.map((breakpoint) => subscribe(breakpoint, callbackHandler));
   };
 
-  /**
-   * @param {Array|String} breakpoint
-   * @param {Function} callbackHandler
-   * @returns {function()}
-   */
   const subscribe = (
     breakpoint: string | string[],
-    callbackHandler: () => {},
+    callbackHandler: (breakpoint, direction) => void,
   ) => {
-    /**
-     * only during the first call the breakpoint param is a array (->App.jsx)
-     */
     if (Array.isArray(breakpoint)) {
       subscribeListenerByBreakPointArray(breakpoint, callbackHandler);
     } else {
@@ -71,10 +46,6 @@ export const BreakpointObserver = (() => {
     }
   };
 
-  /**
-   * @param {Number} breakpoint
-   * @returns {boolean}
-   */
   const hasBreakpointBeenPassedByGrowing = (breakpoint) => {
     return (
       lastWindowInnerWidth < breakpoint &&
@@ -82,10 +53,6 @@ export const BreakpointObserver = (() => {
     );
   };
 
-  /**
-   * @param {Number} breakpoint
-   * @return {boolean}
-   */
   const hasBreakpointBeenPassedByShrinking = (breakpoint) => {
     return (
       lastWindowInnerWidth >= breakpoint &&
@@ -93,25 +60,18 @@ export const BreakpointObserver = (() => {
     );
   };
 
-  /**
-   * @param {String} breakpoint
-   * @param {String} resizeDirection
-   */
   const fireListeners = (breakpoint, resizeDirection) => {
-    /**
-     * search breakpoint in ListenerList and call the handler
-     */
     breakpointListeners[breakpoint].callbackHandler(
       breakpoint,
-      resizeDirection
+      resizeDirection,
     );
   };
 
-  /**
-   * Add EventListener on Window.Resize
-   */
   WindowAdapter.addEventListener('resize', () => {
-    const availableBreakpoints: Array<{ point: string; width: number }> = Object.keys(breakpointListeners).map(
+    const availableBreakpoints: Array<{
+      point: string;
+      width: number;
+    }> = Object.keys(breakpointListeners).map(
       (item: string): { point: string; width: number } => {
         return {
           point: item,
@@ -119,19 +79,11 @@ export const BreakpointObserver = (() => {
         };
       },
     );
-    /**
-     * loop though all breakpoints
-     */
+
     availableBreakpoints.forEach((breakpoint) => {
       if (hasBreakpointBeenPassedByGrowing(breakpoint.width)) {
-        /**
-         * search breakpoint in ListenerList and call the handler
-         */
         fireListeners(breakpoint.point, 'growing');
       } else if (hasBreakpointBeenPassedByShrinking(breakpoint.width)) {
-        /**
-         * search breakpoint in ListenerList and call the handler
-         */
         fireListeners(breakpoint.point, 'shrinking');
       }
     });

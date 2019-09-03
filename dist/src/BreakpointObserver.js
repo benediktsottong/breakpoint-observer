@@ -76,9 +76,7 @@ exports.BreakpointObserver = (() => {
          */
         breakpointListeners[breakpoint].callbackHandler(breakpoint, resizeDirection);
     };
-    /**
-     * Add EventListener on Window.Resize
-     */
+
     WindowAdapter_1.WindowAdapter.addEventListener('resize', () => {
         const availableBreakpoints = Object.keys(breakpointListeners).map((item) => {
             return {
@@ -86,9 +84,7 @@ exports.BreakpointObserver = (() => {
                 width: breakpointListeners[item].width,
             };
         });
-        /**
-         * loop though all breakpoints
-         */
+
         availableBreakpoints.forEach((breakpoint) => {
             if (hasBreakpointBeenPassedByGrowing(breakpoint.width)) {
                 /**

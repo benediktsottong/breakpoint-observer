@@ -2,10 +2,6 @@
  * @type {Object}
  */
 export declare const BreakPoints: {
-    xxs: {
-        width: number;
-        mediaQuery: string;
-    };
     xs: {
         width: number;
         mediaQuery: string;
@@ -23,10 +19,6 @@ export declare const BreakPoints: {
         mediaQuery: string;
     };
     xl: {
-        width: number;
-        mediaQuery: string;
-    };
-    xxl: {
         width: number;
         mediaQuery: string;
     };
