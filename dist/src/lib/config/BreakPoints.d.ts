@@ -1,6 +1,3 @@
-/**
- * @type {Object}
- */
 export declare const BreakPoints: {
     xs: {
         width: number;

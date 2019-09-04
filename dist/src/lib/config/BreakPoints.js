@@ -1,8 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * @type {Object}
- */
 exports.BreakPoints = {
     xs: {
         width: 320,

@@ -18,8 +18,7 @@ export const WindowAdapter = (() => {
   const addEventListener = (event, handler) => {
     const addEventListenerFunction = getWindowFunction(
       'addEventListener',
-      () => {
-      },
+      () => {}
     );
 
     addEventListenerFunction(event, handler);

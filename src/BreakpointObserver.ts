@@ -16,7 +16,7 @@ export const BreakpointObserver = (() => {
 
   const subscribeListenerByBreakPointName = (
     breakpoint: string,
-    callbackHandler: (breakpoint, direction) => void,
+    callbackHandler: (breakpoint, direction) => void
   ) => {
     if (!BreakpointMapper.hasItem(breakpoint)) {
       throw new Error(`Breakpoint ${breakpoint} is undefined`);
@@ -30,14 +30,14 @@ export const BreakpointObserver = (() => {
 
   const subscribeListenerByBreakPointArray = (
     breakpoints: string[],
-    callbackHandler: (breakpoint, direction) => void,
+    callbackHandler: (breakpoint, direction) => void
   ) => {
     breakpoints.map((breakpoint) => subscribe(breakpoint, callbackHandler));
   };
 
   const subscribe = (
     breakpoint: string | string[],
-    callbackHandler: (breakpoint, direction) => void,
+    callbackHandler: (breakpoint, direction) => void
   ) => {
     if (Array.isArray(breakpoint)) {
       subscribeListenerByBreakPointArray(breakpoint, callbackHandler);
@@ -63,7 +63,7 @@ export const BreakpointObserver = (() => {
   const fireListeners = (breakpoint, resizeDirection) => {
     breakpointListeners[breakpoint].callbackHandler(
       breakpoint,
-      resizeDirection,
+      resizeDirection
     );
   };
 
@@ -77,7 +77,7 @@ export const BreakpointObserver = (() => {
           point: item,
           width: breakpointListeners[item].width,
         };
-      },
+      }
     );
 
     availableBreakpoints.forEach((breakpoint) => {
